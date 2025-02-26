@@ -16,7 +16,7 @@ The task is about building a search index that is operationally adjacent to ‘F
 
 ![Screenshot 2025-02-15 163841](https://github.com/user-attachments/assets/dac65bb3-31ed-4f05-bbcb-45fdd7c50b7a)
 
-There are four major steps which was required to complete the project, first was to set up the right environment, both locally and remotely. The second was to retrieve the data that would be used to train and finetuning the models later on. Third was to load a pretrained model and adapt it to the task and then alter it to extract the features of the many images in the dataset. The extracted features were then used to group together images that had things in common with whatever search query is entered. 
+There are four major steps which was required to complete the project, first was to set up the right environment, both locally and remotely. The second was to retrieve the data that would be used for training and finetuning the models later on. Third was to load a pretrained model and adapt it to the task and then alter it to extract the features of the many images in the dataset. The extracted features were then used to group together images that had things in common with whatever search query is entered. 
 
 Finally, after the search index was created, a docker image was built in order to containerise the model, ensuring it can be functional on other computer with different operating system and/or environment. The model was deployed using Fastapi, and it worked well to satisfy the queries entered into it. The evidence is provided through the screenshots, and the model could also be run by anyone as long as the required tools i.e. libraries and applications are satisfied. 
 
