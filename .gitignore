@@ -1,0 +1,16 @@
+jup.ipynb
+images_fb
+cleaned_images
+ec2file.pem
+Images.csv
+Products.csv
+training_data.csv
+featex_api.py
+fastapiex.py
+image_embeddings.json
+image_processor.py 
+app/image_model8.pt
+weights
+__pycache__
+
+
