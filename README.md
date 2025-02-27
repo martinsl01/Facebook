@@ -81,18 +81,21 @@ The heart of the entire project is to extract feature vectors from images, so th
 The first step in building the Faiss Search index was to load the image_embeddings dictionary from the previous part of the project and fit it into the Index. Faiss needs two things for a vector search, the first is an index for the vector data and second is the vector data. The image_ids (keys in the loaded dict) served as the index whilst the image_embeddings (values in the loaded dict) were the feature_vectors. After this, a vector search was performed, with the idea to extract features of any given image and search for similar images using the Faiss Search Index. [See here](faiss_script.py)
 
 A screenshot of a query with k (nearest neighbour) set at 5 and the respective distances is below. 
+
 ![Screenshot 2025-02-15 224246](https://github.com/user-attachments/assets/f766accf-4f94-4870-8866-c9f6b9ff49e2)
 
 ## Deploying Model
 
 Two API enpoints were set up with relevant methods from each model to run predictions on the relevant request body (images and other params) and then return the predictions/search result indexes. I initialised the models I wanted to use by defining the same architecture used to train each model. Then, I initialised an instance of the model and loaded the weights I obtained from training and exporting a .pt file, the one with the most accurate parameters. 
 
-After this I moved every file I needed into a folder called [app](app), then I built a docker image to containerise my work, ensuring it can function on other systems/environments. Then I tested the image locally:
+After this I moved every file I needed into a folder called [app](app), then built a docker image to containerise my work, ensuring it can function on other systems/environments. I checked that the API was working by visiting [ http://localhost:8080/docs] in my browser. The image below is a screenshot of where the image file is uploaded as the search query. 
 
-[image]
-Then I checked that the API was working by visiting [ http://localhost:8080/docs] in my browser, and finally I pushed the image to Docker Hub.
+![Screenshot 2025-02-27 233012](https://github.com/user-attachments/assets/6ab885a9-850a-483f-b7a7-9ea733ae34b7)
 
-[image] 
+The screenshot below is the responde body which contains useful information - category of images and distance from search query. Finally I pushed the image to Docker Hub.
+
+![Screenshot 2025-02-27 233040](https://github.com/user-attachments/assets/608d2058-f73b-48d9-bfad-1a8fbc46bff8)
+
 
 
 
