@@ -8,12 +8,12 @@
 - [Data Preparation](#datapreparation)
 - [Models](#themodels)
 - [Faiss](#faiss)![Screenshot 2025-02-15 163841](https://github.com/user-attachments/assets/dadac9a6-d52b-4a3f-8e67-bbef60a51e89)
-
 - [Deploying Model](#deployingmodel)
 
   ## Introduction
 
 The task is about building a search index that is operationally adjacent to ‘Facebook Marketplace’, a platform for buying and selling goods on Facebook. The readme file documents the implementation of the system behind the marketplace, which uses Artificial Intelligence to recommend the most relevant listings based on a personalised search query. 
+
 ![Uploading Screenshot 2025-02-15 163841.png…]()
 
 
