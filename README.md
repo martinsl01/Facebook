@@ -87,7 +87,7 @@ A screenshot of a query with k (nearest neighbour) set at 5 and the respective d
 
 Two API enpoints were set up with relevant methods from each model to run predictions on the relevant request body (images and other params) and then return the predictions/search result indexes. I initialised the models I wanted to use by defining the same architecture used to train each model. Then, I initialised an instance of the model and loaded the weights I obtained from training and exporting a .pt file, the one with the most accurate parameters. 
 
-After this I moved every file I needed into a folder called app (link), then I built a docker image to containerise my work, ensuring it can function on other systems/environments. Then I tested the image locally:
+After this I moved every file I needed into a folder called [app](app), then I built a docker image to containerise my work, ensuring it can function on other systems/environments. Then I tested the image locally:
 
 [image]
 Then I checked that the API was working by visiting [ http://localhost:8080/docs] in my browser, and finally I pushed the image to Docker Hub.
