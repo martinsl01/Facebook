@@ -44,13 +44,13 @@ The tabular dataset contained lots of null values which I dutifully removed usin
 
 The next thing was to extract labels for classification, and this was done by merging the two ‘.csv’ files together. The two files were ‘products.csv’ which had various information about the product such as price and location, whilst the ‘image.csv’ file contained the ‘image_id’ and ‘product_id’, and given that both dataset possessed the ‘product_id’ column, that was used to merge the two seemingly, making the dataset one. The ‘image_id’ and ‘categories’ were now in the same table, allowing for the accurate classification of each product. It’s worth noting that an encoder was created to make the classification possible, with each category being assigned a number between 0-12 (shown below). A [decoder](decoder.json) was also created to provide the opposite mapping. 
 
-![Screenshot 2025-02-15 182006](https://github.com/user-attachments/assets/8bb14b0b-437e-4121-ae45-5a5f616347fa)
+![Screenshot 2025-02-15 182006](https://github.com/user-attachments/assets/0d3551d5-6ed1-4eac-933f-cdf35e871ecc)
 
 **Cleaning Image Dataset**
 
 As for the images, they all need to be consistent in terms of size and the number of channels. The standerdisation is required to prevent the results of the training, feature extraction and ultimately the search index from being compromised. I created the [clean_images.py](clean_images.py) script and wrot code to clean the image dataset and Create a pipeline that applies the necessary cleaning to the image dataset. After the images passed through the pipeline, they were all adjusted to having three (RGB) channels and 512 pixels as shown in the screenshot of one 'property' sections of one of the cleaned images below. 
 
-<img width="300" alt="Screenshot 2025-02-15 185316" src="https://github.com/user-attachments/assets/de67b031-5aee-4f19-ab10-d30913e468f1" />
+<img width="300" alt="Screenshot 2025-02-15 185316" src="https://github.com/user-attachments/assets/1b90c20e-0448-4cae-9eb8-4f78fba47cef" />
 
 
 **Pytorch Dataset**
@@ -64,7 +64,7 @@ The image dataset to be fed into the classification model is fed through a [Pyto
 When it came to the creation of the models, I took advantage of the CNN architecture that had already been created and trained by others, known as resnet50 on Pytorch. Other than saving time, another major benefit of this is that the intensive training that is often required to get very effective and accurate models has been done in much more capable systems than the one I’m working with, so I don’t have to push my computer to the limits. Therefore, using transfer learning, I fine-tuned the pretrained to model a CNN that can classify the images from the Pytorch Dataset. To do so, I replaced the final linear layer of the model with another linear layer whose output size is the same as the number of categories – 13. 
 Following on from this I defined a function called train, which is used to polish the model, ensuring it’s efficacy. It takes in a model as its first positional argument and also in a keyword argument, epochs for the number of times it will be trained for. Inside the function, the batch of the dataset are in a loop, updating the model's parameters each time. The loss is printed after every prediction to get an idea of how well the training is going. The dataset was split up into Training, validation and Test sets to monitor the training and tensorboard was launched (as shown in the image below) to measure the performance over time by plotting the training loss. Multiple epochs were run in order to enhance the model, and to prevent overfitting or underfitting. 
 
-![Screenshot 2025-02-15 220817](https://github.com/user-attachments/assets/952d5ab6-6d8b-4cc8-8811-35ae32a6fe48)
+![Screenshot 2025-02-15 220817](https://github.com/user-attachments/assets/c7df0645-f04a-4da7-b16e-413ea3b4842e)
 
 
 The training loop was coded to save the weights of the model at the end of every epoch (see ~/FMRRS/model_eval). The saving was coded to include the timestamp of when the model was used in the name of the folder and within that model folder, it creates a folder called weights where the weights of the model was saved with a filename that shows what epoch each saved weights corresponded to. 
@@ -73,16 +73,15 @@ The training loop was coded to save the weights of the model at the end of every
 
 The heart of the entire project is to extract feature vectors from images, so they can be grouped with other images with a similar feature vector. In order to do this the features of the images need to be extracted, and this is done in a straightforward way – converting the classification model into a feature extraction model. The process is to firstly remove the last few fully connected (fc) layers from the model, then design the last layer of this feature extraction model so that it should have 1000 Neurons (in this case). A new folder was then created to save the training of the feature extraction model with it’s 1000 Neurons. In order to get embeddings from the feature extraction model, the last layer was redesigned for that purpose, shown in the screenshot below. The embeddings were saved as a dictionary in json, ready to be used for the search index. 
 
+<img width="427" alt="Screenshot 2025-02-15 220309" src="https://github.com/user-attachments/assets/2cad6f34-13ac-48b5-8e1c-8e290fe3d533" />
 
-<img width="427" alt="Screenshot 2025-02-15 220309" src="https://github.com/user-attachments/assets/cf6af5d0-9af9-4e1a-be6f-f40a6a5d7cda" />
 
 ## Faiss
 
 The first step in building the Faiss Search index was to load the image_embeddings dictionary from the previous part of the project and fit it into the Index. Faiss needs two things for a vector search, the first is an index for the vector data and second is the vector data. The image_ids (keys in the loaded dict) served as the index whilst the image_embeddings (values in the loaded dict) were the feature_vectors. After this, a vector search was performed, with the idea to extract features of any given image and search for similar images using the Faiss Search Index. [See here](faiss_script.py)
 
 A screenshot of a query with k (nearest neighbour) set at 5 and the respective distances is below. 
-
-![Screenshot 2025-02-15 224246](https://github.com/user-attachments/assets/2c98d0f5-c6da-4519-8984-bcc91849752a)
+![Screenshot 2025-02-15 224246](https://github.com/user-attachments/assets/f766accf-4f94-4870-8866-c9f6b9ff49e2)
 
 ## Deploying Model
 
