@@ -30,7 +30,7 @@ A github repository was created to track changes to the code which was advantage
 
 ## Sourcing Data
 
-The dataset and images required for the task was in an EC2 instance on AWS, one of the major cloud software that allows for the depositing and storing of information, also with the facility to code on it as well. I accessed the account and downloaded a private key from the S3 bucket which I used to SSH into the EC2 instance. In there, were two ‘.csv’ files and a folder, the former were the dataset containing information about the listings such as price, location and category whilst the latter were the images corresponding to the listings in the dataset. 
+The dataset and images required for the task was in an EC2 instance on AWS, one of the major cloud software that allows for the depositing and storing of information, also with the facility to write code on it as well. I accessed the account and downloaded a private key from the S3 bucket which I used to SSH into the EC2 instance. In there, were two ‘.csv’ files and a folder, the former were the dataset containing information about the listings such as price, location and category whilst the latter were the images corresponding to the listings in the dataset. 
 
 ## Data Preparation
 
