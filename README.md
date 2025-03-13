@@ -92,7 +92,7 @@ After this I moved every file I needed into a folder called [app](app), then bui
 
 ![Screenshot 2025-02-27 233012](https://github.com/user-attachments/assets/6ab885a9-850a-483f-b7a7-9ea733ae34b7)
 
-The screenshot below is the responde body which contains useful information - category of images and distance from search query. Finally I pushed the image to Docker Hub.
+The screenshot below is the response body which contains useful information - category of images and distance from search query. Finally I pushed the image to Docker Hub.
 
 ![Screenshot 2025-02-27 233040](https://github.com/user-attachments/assets/608d2058-f73b-48d9-bfad-1a8fbc46bff8)
 
