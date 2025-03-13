@@ -48,7 +48,7 @@ The next thing was to extract labels for classification, and this was done by me
 
 **Cleaning Image Dataset**
 
-As for the images, they all need to be consistent in terms of size and the number of channels. The standerdisation is required to prevent the results of the training, feature extraction and ultimately the search index from being compromised. I created the [clean_images.py](clean_images.py) script and wrote code to clean the image dataset and Create a pipeline that applies the necessary cleaning to the image dataset. After the images passed through the pipeline, they were all adjusted to having three (RGB) channels and 512 pixels as shown in the screenshot the 'property' section of one of the cleaned images below. 
+As for the images, they all need to be consistent in terms of size and the number of channels. The standerdisation is required to prevent the results of the training, feature extraction and ultimately the search index from being compromised. I created the [clean_images.py](clean_images.py) script and wrote code to clean the image dataset and Create a pipeline that applies the necessary cleaning to the image dataset. After the images passed through the pipeline, they were all adjusted to having three (RGB) channels and 512 pixels as shown in the screenshot - 'property' section of one of the cleaned images below. 
 
 <img width="300" alt="Screenshot 2025-02-15 185316" src="https://github.com/user-attachments/assets/1b90c20e-0448-4cae-9eb8-4f78fba47cef" />
 
